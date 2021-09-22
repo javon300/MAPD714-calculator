@@ -19,9 +19,9 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="enter equation" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvF-aw-t52">
                                 <rect key="frame" x="43" y="172" width="329" height="132"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="backgroundColor" systemColor="placeholderTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zTf-M0-vsO">
@@ -41,7 +41,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Calculator" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1H-kk-w7n">
                                 <rect key="frame" x="43" y="80" width="329" height="74"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 <color key="tintColor" systemColor="secondaryLabelColor"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" image="YES" staticText="YES"/>
@@ -246,7 +246,27 @@
                     </view>
                     <connections>
                         <outlet property="app_name_label" destination="c1H-kk-w7n" id="VZ0-bb-E4w"/>
+                        <outlet property="back_space_button" destination="6AK-Rn-Mcf" id="ZH0-ov-f2f"/>
+                        <outlet property="clear_button" destination="ByL-PA-ks7" id="R6f-88-ySw"/>
+                        <outlet property="display" destination="yvF-aw-t52" id="Yba-Z8-QxE"/>
+                        <outlet property="divide_button" destination="Sjn-gA-5z8" id="sW2-SS-4TQ"/>
+                        <outlet property="eight_button" destination="at4-Vp-mG2" id="vvk-Q6-hE6"/>
+                        <outlet property="equal_button" destination="czC-xq-cle" id="FMI-Ww-D2Z"/>
+                        <outlet property="five_button" destination="QNA-5A-pnz" id="d7o-bx-cGL"/>
+                        <outlet property="four_button" destination="95o-ag-roo" id="RTw-Bj-QNm"/>
+                        <outlet property="multiply_button" destination="lc6-Js-Kjq" id="lG0-DZ-OuU"/>
+                        <outlet property="nine_button" destination="Fgb-20-3hm" id="hmO-Cs-U5P"/>
+                        <outlet property="one_button" destination="Kfr-xE-phl" id="Ocd-rS-hR0"/>
+                        <outlet property="percent_button" destination="8md-3u-FU1" id="Rf2-mf-5PR"/>
+                        <outlet property="plus_button" destination="O8w-eu-OAA" id="LmA-kc-Eht"/>
                         <outlet property="point_button" destination="zTf-M0-vsO" id="Wax-Nh-LtJ"/>
+                        <outlet property="seven_button" destination="tOs-hw-Cn2" id="I1y-nx-ZPf"/>
+                        <outlet property="sign_button" destination="dZc-l2-VEh" id="P87-V8-N4i"/>
+                        <outlet property="six_button" destination="uBF-Y9-9ZM" id="jei-sT-9O7"/>
+                        <outlet property="subtract_button" destination="V8j-3t-3dE" id="Gh2-Nx-sEz"/>
+                        <outlet property="three_button" destination="wjU-ad-A6G" id="39K-Wc-Zqm"/>
+                        <outlet property="two_button" destination="6b6-uF-RFm" id="EuQ-s9-9ie"/>
+                        <outlet property="zero_button" destination="agU-og-UEJ" id="Igw-lu-kIp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -258,11 +278,14 @@
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <systemColor name="placeholderTextColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -272,9 +295,6 @@
         </systemColor>
         <systemColor name="tertiarySystemFillColor">
             <color red="0.46274509803921571" green="0.46274509803921571" blue="0.50196078431372548" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="tertiarySystemGroupedBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
