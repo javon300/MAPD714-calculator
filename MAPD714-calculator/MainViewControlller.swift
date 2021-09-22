@@ -20,6 +20,10 @@ class MainViewControlller: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //adding corners to buttons
+        //buttons
+        point_button.layer.cornerRadius = 15
+        
     }
 
     @IBAction func point_button_pressed(_ sender: UIButton) {
