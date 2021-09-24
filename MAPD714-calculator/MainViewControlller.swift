@@ -12,7 +12,6 @@ class MainViewControlller: UIViewController {
     //variable declarations
     
     @IBOutlet weak var display: UILabel!
-    @IBOutlet weak var app_name_label: UILabel!
     //operations buttons/ yellow buttons
     @IBOutlet weak var point_button: UIButton!
  
@@ -46,7 +45,6 @@ class MainViewControlller: UIViewController {
         super.viewDidLoad()
         
         //adding corners to buttons
-        app_name_label.layer.cornerRadius = 15
         //operations buttons
         point_button.layer.cornerRadius = 15
         divide_button.layer.cornerRadius = 15
