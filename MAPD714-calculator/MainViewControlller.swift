@@ -12,6 +12,8 @@ class MainViewControlller: UIViewController {
     
     //variable declarations
     var equation: String!
+    var var1: String!
+    var var2: String!
     @IBOutlet weak var resultdisplay: UILabel!
     @IBOutlet weak var display: UILabel!
     //operations buttons/ yellow buttons
@@ -69,7 +71,9 @@ class MainViewControlller: UIViewController {
     @IBAction func ninePressed(_ sender: UIButton) {
         appendEquation(value: "9")
     }
-    
+    @IBAction func pointPressed(_ sender: UIButton) {
+        appendEquation(value: ".")
+    }
     //operations buttons action when pressed
     
     @IBAction func plusPressed(_ sender: UIButton) {
@@ -87,19 +91,17 @@ class MainViewControlller: UIViewController {
     @IBAction func modulus(_ sender: UIButton) {
         appendEquation(value: " % ")
     }
+    
     @IBAction func signPressed(_ sender: UIButton) {
        signChange()
     }
     
-    @IBAction func pointPressed(_ sender: UIButton) {
-        appendEquation(value: " . ")
-    }
     
     @IBAction func clearPressed(_ sender: UIButton) {
        clearAll()
     }
     @IBAction func equalPressed(_ sender: UIButton) {
-        nsCalculation()
+        Calculation()
     }
     @IBAction func deletePressed(_ sender: UIButton) {
         deleteLast()
@@ -180,7 +182,7 @@ class MainViewControlller: UIViewController {
             if (hold.first == "-")
             {
                 //if first value in string is - then delete it from display if not do nothing
-                hold.remove(at: hold.startIndex)
+                hold.removeFirst()
                 print("hold val" + hold)
                 print(String(equation))
                 signVal = "+"
@@ -192,8 +194,6 @@ class MainViewControlller: UIViewController {
             {
                 return
             }
-            print("hold val" + hold)
-            print(String(equation))
         }
     }
     func formatResult(result: Double) -> String{
@@ -204,12 +204,118 @@ class MainViewControlller: UIViewController {
             return String(format: "%.2f",result)
         }
     }
-    func nsCalculation(){
-        let expression = NSExpression(format: equation)
-        let result = expression.expressionValue(with: nil, context: nil) as! Double
-        let resultString = formatResult(result: result)
-        resultdisplay.text = resultString
-        print (resultString)
+    func Calculation()
+    {
+        let hold = equation.split(separator: " ")
+        print(hold);print( String(hold.count) )
+        
+        //check if array count is odd, if even then not valid equation
+        if (hold.count % 2 == 1)
+        {
+            //when given two operands and one operator
+            if (hold.count == 3)
+            {
+                var1 = String(hold[0])
+                var2 = String(hold[2])
+                // choose operator
+                if (hold[1] == "*")
+                {
+                    multiplication(num1: var1, num2: var2)
+                }
+                else if (hold[1] == "/")
+                {
+                    division(num1: var1, num2: var2)
+                }
+                else if (hold[1] == "+")
+                {
+                    addition(num1: var1, num2: var2)
+                }
+                else if (hold[1] == "-")
+                {
+                    subtraction(num1: var1, num2: var2)
+                }
+                else if (hold[1] == "%")
+                {
+                    modulus(num1: var1, num2: var2)
+                }
+                else
+                {
+                    print("invalid operator, please enter operator.")
+                }
+            }
+            else if(hold.count == 3)
+            {
+                
+            }
+            
+        }
+        else
+        {
+            print("invalid equation")
+            return
+        }
+        
+        //check for multiplication
+        
+    }
+    func addition(num1: String, num2: String)
+    {
+        var res: Double!
+        var val1: Double!
+        var val2: Double!
+        
+        val1 = Double(num1)
+        val2 = Double(num2)
+        res = val1 + val2
+        print("res" + String(res))
+        
+    }
+    func modulus(num1: String, num2: String)
+    {
+        var res: Int!
+        var val1: Int!
+        var val2: Int!
+        
+        val1 = Int(num1)
+        val2 = Int(num2)
+        res = val1 % val2
+        print("res" + String(res))
+        
+    }
+    func subtraction(num1: String, num2: String)
+    {
+        var res: Double!
+        var val1: Double!
+        var val2: Double!
+        
+        val1 = Double(num1)
+        val2 = Double(num2)
+        res = val1 - val2
+        print("res" + String(res))
+        
+    }
+    func multiplication(num1: String, num2: String)
+    {
+        var res: Double!
+        var val1: Double!
+        var val2: Double!
+        
+        val1 = Double(num1)
+        val2 = Double(num2)
+        res = val1 * val2
+        print("res" + String(res))
+        
+    }
+    func division(num1: String, num2: String)
+    {
+        var res: Double!
+        var val1: Double!
+        var val2: Double!
+        
+        val1 = Double(num1)
+        val2 = Double(num2)
+        res = val1 / val2
+        print("res" + String(res))
         
     }
 }
