@@ -11,11 +11,10 @@ import UIKit
 class MainViewControlller: UIViewController {
     
     //variable declarations
-    var equation: String = ""
+    var equation: String!
     @IBOutlet weak var resultdisplay: UILabel!
     @IBOutlet weak var display: UILabel!
     //operations buttons/ yellow buttons
-    @IBOutlet weak var point_button: UIButton!
     @IBOutlet weak var divide_button: UIButton!
     @IBOutlet weak var multiply_button: UIButton!
     @IBOutlet weak var subtract_button: UIButton!
@@ -37,6 +36,7 @@ class MainViewControlller: UIViewController {
     @IBOutlet weak var eight_button: UIButton!
     @IBOutlet weak var nine_button: UIButton!
     @IBOutlet weak var zero_button: UIButton!
+    @IBOutlet weak var point_button: UIButton!
     
     //number buttons action when pressed
     @IBAction func zeroPressed(_ sender: UIButton){
@@ -73,41 +73,33 @@ class MainViewControlller: UIViewController {
     //operations buttons action when pressed
     
     @IBAction func plusPressed(_ sender: UIButton) {
-        appendEquation(value:  "+")
+        appendEquation(value:  " + ")
     }
     @IBAction func minusPressed(_ sender: UIButton) {
-        appendEquation(value:  "-")
+        appendEquation(value:  " - ")
     }
     @IBAction func multiplyPressed(_ sender: UIButton) {
-        appendEquation(value: "*")
+        appendEquation(value: " * ")
     }
     @IBAction func dividePressed(_ sender: UIButton) {
-        appendEquation(value: "/")
+        appendEquation(value: " / ")
     }
     @IBAction func modulus(_ sender: UIButton) {
-        appendEquation(value: "%")
+        appendEquation(value: " % ")
     }
     @IBAction func signPressed(_ sender: UIButton) {
-        var sign = String("+")
-        if (sign == "+"){
-            sign = "-"
-            return
-        }
-        sign = "+"
+       signChange()
     }
+    
     @IBAction func pointPressed(_ sender: UIButton) {
-        appendEquation(value: ".")
+        appendEquation(value: " . ")
     }
+    
     @IBAction func clearPressed(_ sender: UIButton) {
        clearAll()
     }
     @IBAction func equalPressed(_ sender: UIButton) {
-        let expression = NSExpression(format: equation)
-        let result = expression.expressionValue(with: nil, context: nil) as! Double
-        let resultString = formatResult(result: result)
-        resultdisplay.text = resultString
-        
-        
+        nsCalculation()
     }
     @IBAction func deletePressed(_ sender: UIButton) {
         deleteLast()
@@ -118,7 +110,6 @@ class MainViewControlller: UIViewController {
         super.viewDidLoad()
         
         //adding corners to buttons
-        //operations buttons
         point_button.layer.cornerRadius = 15
         divide_button.layer.cornerRadius = 15
         multiply_button.layer.cornerRadius = 15
@@ -142,19 +133,68 @@ class MainViewControlller: UIViewController {
         zero_button.layer.cornerRadius = 15
         clearAll()
     }
-    
+    //calears all values from all containers
     func clearAll(){
         equation = ""
         display.text = ""
         resultdisplay.text = ""
     }
+    
+    //places values after theu are pressed
     func appendEquation(value: String){
         equation = equation + value
         display.text = equation
     }
+    
     func deleteLast(){
         equation.removeLast()
         display.text?.removeLast()
+    }
+    //add remove the negation sign
+    func signChange()
+    {
+        //temp local vars
+        var signVal: String = "+"
+        var hold:String  = equation
+
+        //if sign is positive change to negative and insert in front of equation
+        if (signVal == "+")
+        {
+            if (hold.first == "-")
+            {
+                return
+            }
+            signVal = "-"
+            //have to set value before using else error
+            hold = signVal + equation
+            equation = hold
+            display.text = hold
+            print("hold val" + hold)
+            print(String(equation))
+            return
+        }
+        //if sign is negative, then remove from equation and from display
+        else if (signVal == "-")
+        {
+            //if neg is already present remove from equation
+            if (hold.first == "-")
+            {
+                //if first value in string is - then delete it from display if not do nothing
+                hold.remove(at: hold.startIndex)
+                print("hold val" + hold)
+                print(String(equation))
+                signVal = "+"
+                display.text = hold
+                equation = hold
+                return
+            }
+            else
+            {
+                return
+            }
+            print("hold val" + hold)
+            print(String(equation))
+        }
     }
     func formatResult(result: Double) -> String{
         if result.truncatingRemainder(dividingBy: 1) == 0{
@@ -163,6 +203,14 @@ class MainViewControlller: UIViewController {
         else{
             return String(format: "%.2f",result)
         }
+    }
+    func nsCalculation(){
+        let expression = NSExpression(format: equation)
+        let result = expression.expressionValue(with: nil, context: nil) as! Double
+        let resultString = formatResult(result: result)
+        resultdisplay.text = resultString
+        print (resultString)
+        
     }
 }
 

@@ -25,23 +25,8 @@
                                 <color key="textColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zTf-M0-vsO">
-                                <rect key="frame" x="129" y="395" width="174" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor"/>
-                                <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title=".">
-                                    <fontDescription key="titleFontDescription" type="system" weight="black" pointSize="50"/>
-                                    <color key="baseForegroundColor" systemColor="labelColor"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="pointPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tB0-qM-fqw"/>
-                                    <action selector="point_button_pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JGU-sK-W8l"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agU-og-UEJ">
-                                <rect key="frame" x="34" y="395" width="83" height="60"/>
+                                <rect key="frame" x="34" y="395" width="178" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 <state key="normal" title="Button"/>
@@ -296,6 +281,20 @@
                                 <color key="textColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AII-Gk-DcX">
+                                <rect key="frame" x="220" y="395" width="83" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title=".">
+                                    <fontDescription key="titleFontDescription" type="system" weight="black" pointSize="52"/>
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="clearPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aai-nI-hxb"/>
+                                    <action selector="pointPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fvu-gl-o9s"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
@@ -314,7 +313,7 @@
                         <outlet property="one_button" destination="Kfr-xE-phl" id="Ocd-rS-hR0"/>
                         <outlet property="percent_button" destination="8md-3u-FU1" id="Rf2-mf-5PR"/>
                         <outlet property="plus_button" destination="O8w-eu-OAA" id="LmA-kc-Eht"/>
-                        <outlet property="point_button" destination="zTf-M0-vsO" id="Wax-Nh-LtJ"/>
+                        <outlet property="point_button" destination="AII-Gk-DcX" id="tDv-Bz-l2a"/>
                         <outlet property="resultdisplay" destination="Iaj-Tp-5Ne" id="XhP-y3-5Oc"/>
                         <outlet property="seven_button" destination="tOs-hw-Cn2" id="I1y-nx-ZPf"/>
                         <outlet property="sign_button" destination="dZc-l2-VEh" id="P87-V8-N4i"/>
