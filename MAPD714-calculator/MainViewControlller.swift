@@ -112,17 +112,25 @@ class MainViewControlller: UIViewController {
         appendEquation(value: " ² ")
     }
     @IBAction func randPressed(_ sender: UIButton) {
-        appendEquation(value: " ran ")
+        //replace sign with number for calculation but shows sign only to user
+        display.text =  equation + " rand "
+        let random = rand()
+        equation = equation + random
     }
     @IBAction func rootPressed(_ sender: UIButton) {
         appendEquation(value: " √ ")
     }
     @IBAction func piePressed(_ sender: UIButton) {
-        appendEquation(value: " π ")
+        //replace sign with number for calculation but shows sign only to user
+        display.text =  equation + " π "
+        equation = equation +  " 3.14 "
+       
+
     }
     
     @IBAction func signPressed(_ sender: UIButton) {
-       signChange()
+       //signChange()
+        sign(val: equation)
     }
     
 
@@ -191,7 +199,6 @@ class MainViewControlller: UIViewController {
     //places values after theu are pressed
     func appendResult(value: String)
     {
-        equation = equation + value
         resultdisplay.text = value
     }
     
@@ -200,51 +207,38 @@ class MainViewControlller: UIViewController {
         equation.removeLast()
         display.text?.removeLast()
     }
-    
-    //add remove the negation sign
-    func signChange()
-    {
-        //temp local vars
-        var signVal: String = "+"
-        var hold:String  = equation
-
-        //if sign is positive change to negative and insert in front of equation
-        if (signVal == "+")
+    func sign(val: String){
+        var signed: Double!
+        var hold = val.split(separator: " ")
+        print(hold);print( String(hold.count) )
+        
+        //check if equation has one or more operands and signs the last one
+        if(hold.count == 1)
         {
-            if (hold.first == "-")
-            {
-                return
-            }
-            signVal = "-"
-            //have to set value before using else error
-            hold = signVal + equation
-            equation = hold
-            display.text = hold
-            print("hold val" + hold)
-            print(String(equation))
-            return
+            signed = Double(hold[0])
+            signed = -signed//signs value
+            equation = String(signed)
         }
-        //if sign is negative, then remove from equation and from display
-        else if (signVal == "-")
+        else if (hold.count == 3)
         {
-            //if neg is already present remove from equation
-            if (hold.first == "-")
-            {
-                //if first value in string is - then delete it from display if not do nothing
-                hold.removeFirst()
-                print("hold val" + hold)
-                print(String(equation))
-                signVal = "+"
-                display.text = hold
-                equation = hold
-                return
-            }
-            else
-            {
-                return
-            }
+            signed = Double(hold[2])
+            signed = -signed
+            
+            //splitting removes space around operands so
+            //eradded space with these next line
+            hold[1] = " " + hold[1] + " "
+           
+            
+            equation = hold[0] + hold[1] + String(signed)
         }
+        else if (hold.count != 3 || hold.count != 1)
+        {
+           print("invalid operation")
+        }
+        display.text = equation
     }
+    
+   
     func formatResult(result: Double) -> String{
         if result.truncatingRemainder(dividingBy: 1) == 0{
             return String(format: "%.0f",result)
@@ -256,8 +250,9 @@ class MainViewControlller: UIViewController {
     func Calculation()
     {
         let hold = equation.split(separator: " ")
-        print(hold);print( String(hold.count) )
-        
+        print("num of vars" + String(hold.count) )
+        print(hold)
+    
         if(hold.count == 2)
         {
             var1 = String(hold[0])
@@ -274,21 +269,18 @@ class MainViewControlller: UIViewController {
             {
                 trig(operand: var1, num: var2)
             }
-            else if (hold[0] == "ran")
-            {
-                rand(operand: var1, num2: var2)
-            }
-            else if (hold[0] == "²")
-            {
-                square(operand:var1, num1: var2)
-            }
+//
             else if (hold[0] == "√")
             {
                 root(operand: var1, num: var2)
             }
+            else if (hold[1] == "²")
+            {
+                square(num: var1, operand: var2)
+            }
             else
             {
-                print("no trig values")
+                print("not a two digit operation, reevqluate your equation")
             }
             
         }
@@ -391,6 +383,17 @@ class MainViewControlller: UIViewController {
         
     }
     
+    func square(num: String, operand: String )
+    {
+        var res: Double!
+        var val: Double!
+        val = Double(num)
+        res = val * val
+        print("result" + String(res))
+        appendResult(value: formatResult(result: res))
+        
+    }
+    
     func division(num1: String, num2: String)
     {
         var res: Double!
@@ -437,12 +440,11 @@ class MainViewControlller: UIViewController {
     {
         var res: Double!
         var val1: Double!
-        
         val1 = Double(num)
-        res = val1 / 2
+        
+        res = val1.squareRoot()
         print("res" + String(res))
         appendResult(value: formatResult(result: res))
-        
     }
     func pie(num1: String, num2: String)
     {
@@ -453,24 +455,16 @@ class MainViewControlller: UIViewController {
         appendResult(value: formatResult(result: res))
         
     }
-    func rand(operand: String, num2: String)
+    
+    func rand() -> String
     {
         var res: Double!
-        res = 0.13
+        
+        res = Double.random(in: 0...100)        //random generator
         print("res" + String(res))
         appendResult(value: formatResult(result: res))
-        
+        return String(res)
     }
-    func square(operand: String, num1: String)
-    {
-        var res: Double!
-        var val1: Double!
-        
-        val1 = Double(num1)
-        res = val1 * val1
-        print("res" + String(res) + String(operand))
-        appendResult(value: formatResult(result: res))
-        
-    }
+    
 }
 
